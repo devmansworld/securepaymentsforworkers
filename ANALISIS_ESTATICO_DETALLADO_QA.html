@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Análisis Estático Detallado – Proyecto QA ACHS</title>
+<style>
+body { font-family: Arial; margin:40px; line-height:1.6; }
+h1,h2,h3 { color:#1B2631; }
+table { border-collapse: collapse; width:100%; margin-bottom:30px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; vertical-align:top; }
+th { background:#F2F3F4; }
+.section { margin-bottom:60px; }
+.box { background:#F8F9F9; padding:15px; border-left:5px solid #1B2631; }
+</style>
+</head>
+<body>
+
+<h1>Análisis Estático del Código – QA ACHS</h1>
+
+<div class="section">
+<h2>1️⃣ Librerías Utilizadas</h2>
+<table>
+<tr><th>Librería</th><th>Propósito</th><th>Análisis Estático</th></tr>
+<tr>
+<td>requests</td>
+<td>Cliente HTTP para consumir API</td>
+<td>Uso correcto con timeout explícito. Recomendación: manejar posibles excepciones (requests.exceptions).</td>
+</tr>
+<tr>
+<td>pytest</td>
+<td>Framework de pruebas automatizadas</td>
+<td>Uso adecuado de parametrización. Mejora: agregar marcadores personalizados si escala el proyecto.</td>
+</tr>
+<tr>
+<td>decimal.Decimal</td>
+<td>Precisión financiera</td>
+<td>Uso correcto para evitar errores IEEE 754. Muy buena práctica para contexto financiero.</td>
+</tr>
+<tr>
+<td>flake8</td>
+<td>Análisis de estilo</td>
+<td>Configurado con límite de 88 caracteres. Asegura consistencia.</td>
+</tr>
+<tr>
+<td>mypy</td>
+<td>Chequeo de tipos estáticos</td>
+<td>Modo strict activado. Excelente decisión para mantenibilidad.</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>2️⃣ utils/api_client.py</h2>
+<table>
+<tr><th>Función</th><th>Análisis</th><th>Observaciones</th></tr>
+<tr>
+<td>calcular_beneficio(payload)</td>
+<td>Función simple y desacoplada. Encapsula la llamada HTTP.</td>
+<td>Podría agregarse manejo de excepciones y logging estructurado.</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>3️⃣ utils/expected_calculator.py</h2>
+<table>
+<tr><th>Función</th><th>Análisis</th><th>Observaciones</th></tr>
+<tr>
+<td>calcular_esperado()</td>
+<td>Lógica clara separada de la API. Uso correcto de Decimal. Tabla de factores explícita.</td>
+<td>Posible mejora: validar rango máximo (ej: &gt;100%).</td>
+</tr>
+</table>
+
+<div class="box">
+La separación entre lógica esperada y consumo HTTP es una decisión arquitectónica correcta.
+Permite validar la API contra una fuente independiente de verdad.
+</div>
+</div>
+
+<div class="section">
+<h2>4️⃣ tests/test_indemnizacion_factores.py</h2>
+<table>
+<tr><th>Elemento</th><th>Análisis</th></tr>
+<tr>
+<td>pytest.mark.parametrize</td>
+<td>Cobertura exhaustiva de todos los tramos. Excelente práctica para evitar duplicación.</td>
+</tr>
+<tr>
+<td>Conversión Decimal(str())</td>
+<td>Correcta para evitar problemas de precisión con floats del backend.</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>5️⃣ tests/test_boundaries.py</h2>
+<table>
+<tr><th>Elemento</th><th>Análisis</th></tr>
+<tr>
+<td>Casos 14.99 / 40 / 70</td>
+<td>Buena cobertura de límites críticos. Recomendación: agregar 39.999 y 69.999 si no existen.</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>6️⃣ tests/test_negativos.py</h2>
+<table>
+<tr><th>Elemento</th><th>Análisis</th></tr>
+<tr>
+<td>grado negativo</td>
+<td>Correctamente espera 400.</td>
+</tr>
+<tr>
+<td>SBM negativo</td>
+<td>Correctamente espera 400.</td>
+</tr>
+<tr>
+<td>Mejora sugerida</td>
+<td>Agregar pruebas para tipos inválidos (string, null, objeto).</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>7️⃣ Configuración Estática</h2>
+<table>
+<tr><th>Archivo</th><th>Análisis</th></tr>
+<tr>
+<td>.flake8</td>
+<td>Controla estilo y previene inconsistencias.</td>
+</tr>
+<tr>
+<td>mypy.ini</td>
+<td>Modo strict garantiza seguridad de tipos.</td>
+</tr>
+<tr>
+<td>pytest.ini</td>
+<td>Organiza ejecución y mejora claridad.</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>8️⃣ Evaluación General</h2>
+<div class="box">
+✔ Arquitectura limpia (separación responsabilidades)<br>
+✔ Precisión financiera correcta<br>
+✔ Cobertura completa de reglas de negocio<br>
+✔ Uso adecuado de análisis estático<br>
+✔ Código legible y mantenible<br><br>
+
+Áreas de mejora futura:
+- Manejo explícito de excepciones HTTP
+- Logging estructurado
+- Pruebas de contrato con schema validation
+- Pruebas de carga
+</div>
+</div>
+
+</body>
+</html>

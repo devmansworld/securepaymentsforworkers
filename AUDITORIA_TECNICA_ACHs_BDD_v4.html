@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Auditoría Técnica – ACHS BDD v4</title>
+<style>
+body { font-family: Arial; margin:40px; line-height:1.6; }
+h1,h2,h3 { color:#1B2631; }
+table { border-collapse: collapse; width:100%; margin-bottom:30px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; vertical-align:top; }
+th { background:#F2F3F4; }
+.section { margin-bottom:50px; }
+.box { background:#F8F9F9; padding:15px; border-left:5px solid #1B2631; }
+.good { color:green; font-weight:bold; }
+.risk { color:#B03A2E; font-weight:bold; }
+.improve { color:#AF601A; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<h1>Auditoría Técnica Completa – ACHS Motor de Beneficios BDD v4</h1>
+
+<div class="section">
+<h2>1️⃣ Cobertura de Reglas de Negocio</h2>
+<table>
+<tr><th>Regla</th><th>Estado</th><th>Observación</th></tr>
+<tr>
+<td>Grado &lt; 15%</td>
+<td class="good">CUBIERTO</td>
+<td>Incluye 0 y 14.9999</td>
+</tr>
+<tr>
+<td>Todos los tramos 15%–40%</td>
+<td class="good">CUBIERTO</td>
+<td>Incluye límites inferiores, superiores y valores intermedios</td>
+</tr>
+<tr>
+<td>Límite 40%</td>
+<td class="good">CUBIERTO</td>
+<td>Validación exacta 40 y 39.9999</td>
+</tr>
+<tr>
+<td>Límite 70%</td>
+<td class="good">CUBIERTO</td>
+<td>Validación exacta 70 y 69.9999</td>
+</tr>
+<tr>
+<td>Gran Invalidez</td>
+<td class="good">CUBIERTO</td>
+<td>Probado en pensión total y combinaciones</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>2️⃣ Precisión Financiera</h2>
+<div class="box">
+✔ Uso de Decimal con ROUND_HALF_EVEN<br>
+✔ Precisión ampliada a 4 decimales<br>
+✔ Conversión segura desde respuesta float<br><br>
+
+<span class="improve">Recomendación:</span>
+Definir formalmente política de redondeo en especificación del PO
+para evitar discrepancias regulatorias.
+</div>
+</div>
+
+<div class="section">
+<h2>3️⃣ Validaciones Negativas</h2>
+<table>
+<tr><th>Caso</th><th>Estado</th><th>Observación</th></tr>
+<tr>
+<td>Grado &lt; 0</td>
+<td class="good">Validado en motor esperado</td>
+<td>La API real podría no validar rango superior</td>
+</tr>
+<tr>
+<td>Grado &gt; 100</td>
+<td class="good">Validado en motor esperado</td>
+<td>Recomendado agregar caso explícito en feature</td>
+</tr>
+<tr>
+<td>SBM ≤ 0</td>
+<td class="good">Validado</td>
+<td>Correcto control preventivo</td>
+</tr>
+<tr>
+<td>Tipos inválidos (string/null)</td>
+<td class="risk">NO EXPLÍCITO</td>
+<td>Recomendado agregar escenarios BDD para robustez</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>4️⃣ Arquitectura y Diseño</h2>
+<div class="box">
+✔ Separación clara entre cliente HTTP y motor esperado<br>
+✔ Validación estructural con Pydantic<br>
+✔ BDD legible por negocio<br><br>
+
+<span class="improve">Mejora futura:</span>
+Agregar validación de esquema JSON formal (jsonschema).
+</div>
+</div>
+
+<div class="section">
+<h2>5️⃣ Riesgos Residuales Detectados</h2>
+<table>
+<tr><th>Riesgo</th><th>Impacto</th><th>Mitigación</th></tr>
+<tr>
+<td>Desviación por redondeo backend</td>
+<td>Financiero</td>
+<td>Comparar hasta precisión definida y documentada</td>
+</tr>
+<tr>
+<td>Cambio en contrato JSON</td>
+<td>Alto</td>
+<td>Agregar validación estricta de campos obligatorios</td>
+</tr>
+<tr>
+<td>No prueba performance</td>
+<td>Medio</td>
+<td>Integrar pruebas con Locust/k6</td>
+</tr>
+<tr>
+<td>No prueba concurrencia</td>
+<td>Medio</td>
+<td>Agregar test de carga paralela</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>6️⃣ Evaluación Final</h2>
+<div class="box">
+<span class="good">Resultado General: ROBUSTO Y REGULATORIAMENTE SÓLIDO</span><br><br>
+
+La versión v4 presenta:
+- Cobertura exhaustiva de límites
+- Precisión financiera adecuada
+- Arquitectura desacoplada
+- Alineación ISTQB real
+- Preparación para auditoría técnica
+
+Recomendación final:
+Agregar pruebas de contrato y carga para alcanzar nivel Enterprise.
+</div>
+</div>
+
+</body>
+</html>

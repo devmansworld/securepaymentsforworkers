@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Resumen Comparativo v1 vs v2 – QA ACHS</title>
+<style>
+body { font-family: Arial; margin:40px; line-height:1.6; }
+h1,h2 { color:#1B2631; }
+table { border-collapse: collapse; width:100%; margin-bottom:40px; }
+th, td { border:1px solid #ccc; padding:10px; text-align:left; vertical-align:top; }
+th { background:#F2F3F4; }
+.section { margin-bottom:60px; }
+</style>
+</head>
+<body>
+
+<h1>Resumen Comparativo – Proyecto QA ACHS</h1>
+
+<div class="section">
+<h2>📦 Estructura General</h2>
+<table>
+<tr>
+<th>Componente</th>
+<th>Versión 1</th>
+<th>Versión 2 (Actual)</th>
+</tr>
+<tr>
+<td>Repositorio QA</td>
+<td>Estructura base con tests iniciales</td>
+<td>Estructura completa con cobertura total de reglas, límites y negativos</td>
+</tr>
+<tr>
+<td>ISTQB</td>
+<td>Plan de pruebas y documentación general</td>
+<td>Plan alineado + cobertura explícita por factor y límites</td>
+</tr>
+<tr>
+<td>Quality Folder</td>
+<td>Análisis estático + Gherkin básico</td>
+<td>Análisis estático + Gherkin + decisiones consolidadas</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🧪 Tests Automatizados</h2>
+<table>
+<tr>
+<th>Archivo</th>
+<th>Qué hace</th>
+<th>Mejora en v2</th>
+</tr>
+<tr>
+<td>test_indemnizacion_factores.py</td>
+<td>Valida tabla completa de factores</td>
+<td>Parametrización completa con todos los rangos y valores intermedios</td>
+</tr>
+<tr>
+<td>test_boundaries.py</td>
+<td>Valida límites 15, 40, 70</td>
+<td>Incluye casos 14.99, 40 exacto, 70 exacto</td>
+</tr>
+<tr>
+<td>test_negativos.py</td>
+<td>Valida entradas inválidas</td>
+<td>Cubre grado negativo y SBM negativo explícitamente</td>
+</tr>
+<tr>
+<td>expected_calculator.py</td>
+<td>Lógica esperada con Decimal</td>
+<td>Tabla completa de factores alineada a especificación PO</td>
+</tr>
+<tr>
+<td>api_client.py</td>
+<td>Wrapper HTTP simple</td>
+<td>Se mantiene limpio y desacoplado</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📊 Cobertura de Reglas de Negocio</h2>
+<table>
+<tr>
+<th>Regla</th>
+<th>Cubierta en v1</th>
+<th>Cubierta en v2</th>
+</tr>
+<tr>
+<td>Grado &lt; 15</td>
+<td>Parcial</td>
+<td>Completa con límite inferior y decimal</td>
+</tr>
+<tr>
+<td>Todos los factores 15–40</td>
+<td>No completamente</td>
+<td>100% cubiertos (todos los tramos)</td>
+</tr>
+<tr>
+<td>Pensión parcial</td>
+<td>Básica</td>
+<td>Límites + comportamiento correcto</td>
+</tr>
+<tr>
+<td>Pensión total</td>
+<td>Básica</td>
+<td>Límite exacto + validación consistente</td>
+</tr>
+<tr>
+<td>Gran Invalidez</td>
+<td>Básica</td>
+<td>Validación consistente dentro de lógica esperada</td>
+</tr>
+<tr>
+<td>Negativos</td>
+<td>Limitado</td>
+<td>Casos explícitos de error 400</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🔍 Calidad y Gobernanza</h2>
+<table>
+<tr>
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+<tr>
+<td>flake8</td>
+<td>Control de estilo y calidad de código</td>
+</tr>
+<tr>
+<td>mypy</td>
+<td>Tipado estático estricto</td>
+</tr>
+<tr>
+<td>Gherkin</td>
+<td>Escenarios entendibles por negocio</td>
+</tr>
+<tr>
+<td>Separación utils/tests</td>
+<td>Arquitectura limpia y mantenible</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🎯 Conclusión Técnica</h2>
+<p>
+La versión 2 garantiza cobertura completa de las reglas documentadas por el PO,
+incluyendo todos los rangos de factores, límites críticos y validaciones negativas.
+Se fortalece la precisión financiera mediante Decimal y se asegura calidad
+mediante análisis estático y estructura mantenible.
+</p>
+</div>
+
+</body>
+</html>
