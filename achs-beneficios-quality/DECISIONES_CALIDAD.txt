@@ -1,0 +1,26 @@
+DECISIONES DE CALIDAD Y AUTOMATIZACIÓN
+
+1. Se utiliza análisis estático (flake8 y mypy) para:
+   - Detectar errores de estilo
+   - Forzar tipado estricto
+   - Evitar código ambiguo
+   - Asegurar mantenibilidad
+
+2. Se agregan pruebas en Gherkin para:
+   - Facilitar lectura por PO y negocio
+   - Traducir reglas de negocio a escenarios entendibles
+   - Alinear QA técnico con QA funcional
+
+3. Se separan:
+   - Pruebas técnicas (pytest)
+   - Documentación ISTQB
+   - Pruebas BDD (Gherkin)
+   - Análisis estático
+
+4. Se prioriza:
+   - Precisión financiera
+   - Claridad estructural
+   - Separación de responsabilidades
+   - Preparación para auditoría
+
+5. Se diseñó el proyecto para ser presentado en PyCharm sin dependencias adicionales.
