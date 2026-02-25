@@ -1,0 +1,1 @@
+Cobertura completa ISTQB aplicada: equivalencia, límites, tabla decisión, negativos.
