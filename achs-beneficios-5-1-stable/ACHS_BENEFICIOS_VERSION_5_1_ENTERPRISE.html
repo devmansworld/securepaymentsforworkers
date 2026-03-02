@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ACHS Version 5.1 Enterprise</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>Version 5.1 Stable</h1>
+<p>Playwright + AdonisJS + Chart.js + Docker + Kubernetes + DevOps</p>
+<canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['NINGUNO','INDEMNIZACION','PENSION_PARCIAL','PENSION_TOTAL'],
+        datasets: [{
+            label: 'Sample Distribution',
+            data: [5,12,8,3]
+        }]
+    }
+});
+</script>
+</body>
+</html>

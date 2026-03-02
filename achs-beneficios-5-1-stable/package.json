@@ -1,0 +1,14 @@
+{
+  "name": "achs-beneficios-v5-1-stable",
+  "version": "5.1.0",
+  "description": "Playwright + AdonisJS Enterprise Stable Version",
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "typescript": "^5.3.3",
+    "chart.js": "^4.4.0"
+  }
+}
