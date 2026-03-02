@@ -1,0 +1,12 @@
+{
+  "name": "achs-beneficios-v5",
+  "version": "1.0.0",
+  "description": "QA Automation aligned with AdonisJS using Playwright",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "typescript": "^5.3.3"
+  }
+}
