@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Comparativa Técnica – Python vs Playwright TS</title>
+<style>
+body { font-family: Arial; margin: 60px; line-height: 1.7; }
+h1, h2 { color: #0B3C5D; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 40px; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+th { background-color: #F2F3F4; }
+pre { background: #F4F6F6; padding: 10px; border-radius: 6px; }
+@media print { body { margin: 40px; } }
+</style>
+</head>
+<body>
+
+<h1>Guía Comparativa Técnica</h1>
+<h2>Python (Versiones 1–4) vs Playwright TS (Versiones 5.x)</h2>
+
+<h2>Evolución</h2>
+<ul>
+<li>V1–V4: Python con enfoque financiero y precisión decimal.</li>
+<li>V5+: Migración a Playwright TS por cohesión infra Node.</li>
+</ul>
+
+<h2>Comparación Técnica</h2>
+
+<table>
+<tr>
+<th>Aspecto</th>
+<th>Python</th>
+<th>Playwright TS</th>
+<th>Comentario</th>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Python 3.x</td>
+<td>Node.js</td>
+<td>TS se integra con AdonisJS</td>
+</tr>
+<tr>
+<td>Precisión</td>
+<td>decimal.Decimal</td>
+<td>number</td>
+<td>Python superior en finanzas críticas</td>
+</tr>
+<tr>
+<td>Tipado</td>
+<td>Dinámico</td>
+<td>Estático</td>
+<td>TS reduce errores en equipos grandes</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td>Imagen separada</td>
+<td>Mismo ecosistema</td>
+<td>TS simplifica DevOps</td>
+</tr>
+</table>
+
+<h2>Cheatsheet Sintáctico</h2>
+
+<h3>Python</h3>
+<pre>
+response = requests.post(url, json=payload)
+assert response.status_code == 200
+</pre>
+
+<h3>Playwright</h3>
+<pre>
+const response = await request.post('/endpoint', { data: payload });
+expect(response.ok()).toBeTruthy();
+</pre>
+
+<h2>Recomendación Empresarial</h2>
+<p>
+Motor matemático crítico → Python micro-engine.
+Infra & contract tests → Playwright TS.
+</p>
+
+</body>
+</html>

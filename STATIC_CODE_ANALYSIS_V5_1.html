@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Static Code Analysis – ACHS Version 5.1 Stable</title>
+<style>
+body { font-family: Arial; margin: 60px; line-height: 1.7; color: #1B2631; }
+h1, h2, h3 { color: #0B3C5D; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 40px; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+th { background-color: #F2F3F4; }
+.section { margin-bottom: 60px; }
+.good { color: green; font-weight: bold; }
+.warning { color: #B9770E; font-weight: bold; }
+.risk { color: #B03A2E; font-weight: bold; }
+pre { background: #F4F6F6; padding: 15px; border-radius: 6px; overflow-x: auto; }
+@media print { body { margin: 40px; } }
+</style>
+</head>
+<body>
+
+<h1>Static Code Analysis</h1>
+<h2>ACHS Beneficios – Version 5.1 Stable</h2>
+
+<div class="section">
+<h2>1️⃣ package.json</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>Dependencias</td>
+<td class="good">Correctas</td>
+<td>@playwright/test y typescript alineados con entorno Node</td>
+</tr>
+<tr>
+<td>Versionado</td>
+<td class="warning">Semver básico</td>
+<td>Se recomienda fijar versiones exactas para entornos regulados</td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td class="good">Adecuados</td>
+<td>test y report correctamente definidos</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>2️⃣ playwright.config.ts</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>BaseURL configurable</td>
+<td class="good">Correcto</td>
+<td>Uso de variable de entorno BASE_URL</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td class="good">Definido</td>
+<td>15000 ms adecuado para API testing</td>
+</tr>
+<tr>
+<td>Ambientes múltiples</td>
+<td class="warning">No segmentado</td>
+<td>Se recomienda config por entorno (dev/stage/prod)</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>3️⃣ beneficios.spec.ts</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>Boundary Coverage</td>
+<td class="good">Alta</td>
+<td>Cubre 0, 14.9999, 15, 39.9999, 40, 69.9999, 70, 100</td>
+</tr>
+<tr>
+<td>Validación tipoBeneficio</td>
+<td class="good">Correcta</td>
+<td>Comparación directa del campo crítico</td>
+</tr>
+<tr>
+<td>Validación monto</td>
+<td class="risk">No incluida</td>
+<td>No valida precisión financiera del monto</td>
+</tr>
+<tr>
+<td>Gran Invalidez</td>
+<td class="warning">Parcial</td>
+<td>No se prueban combinaciones múltiples</td>
+</tr>
+<tr>
+<td>Pruebas negativas</td>
+<td class="risk">Ausentes</td>
+<td>No se testean tipos inválidos o rango &gt; 100</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>4️⃣ Dockerfile</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>Imagen base</td>
+<td class="good">Ligera</td>
+<td>node:18-alpine reduce tamaño</td>
+</tr>
+<tr>
+<td>Instalación Playwright</td>
+<td class="good">Correcta</td>
+<td>--with-deps asegura navegadores</td>
+</tr>
+<tr>
+<td>Optimización</td>
+<td class="warning">Mejorable</td>
+<td>Se recomienda multi-stage build</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>5️⃣ Kubernetes Job</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>Job Type</td>
+<td class="good">Correcto</td>
+<td>Uso de batch/v1 Job adecuado</td>
+</tr>
+<tr>
+<td>Restart Policy</td>
+<td class="good">Never</td>
+<td>Correcto para ejecución de tests</td>
+</tr>
+<tr>
+<td>Observabilidad</td>
+<td class="warning">Limitada</td>
+<td>No incluye logging sidecar ni almacenamiento de resultados</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>6️⃣ Seguridad</h2>
+<table>
+<tr><th>Aspecto</th><th>Evaluación</th><th>Observación</th></tr>
+<tr>
+<td>Variables de entorno</td>
+<td class="good">Correcto</td>
+<td>Uso de BASE_URL externo</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td class="warning">No gestionados</td>
+<td>Si se agregan tokens, usar Kubernetes Secrets</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>7️⃣ Recomendaciones Enterprise</h2>
+<ul>
+<li>Agregar validación de monto (precision monetary)</li>
+<li>Agregar pruebas negativas (grado &lt; 0, &gt; 100, tipos inválidos)</li>
+<li>Agregar cobertura granInvalidez combinada</li>
+<li>Implementar reporter Allure o integración con Datadog</li>
+<li>Multi-stage Docker build</li>
+<li>Pipeline con cobertura y métricas</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Evaluación Final</h2>
+<p><strong>Resultado:</strong> Arquitectura sólida y alineada con Node ecosystem.</p>
+<p>Riesgo principal: Falta validación monetaria explícita y pruebas negativas.</p>
+<p>Madurez estimada: <strong>8.5 / 10</strong></p>
+</div>
+
+</body>
+</html>
