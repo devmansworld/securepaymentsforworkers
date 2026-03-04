@@ -1,0 +1,13 @@
+{
+  "name": "achs-beneficios-v6-suite",
+  "version": "6.0.0",
+  "description": "Modular Playwright Test Suite with HTML Reports and CI/CD",
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "typescript": "^5.3.3"
+  }
+}
