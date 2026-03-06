@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Adonis + Playwright Simple Guide</title>
+<style>
+body{font-family:Arial;margin:40px;line-height:1.6}
+pre{background:#f4f4f4;padding:10px;border-radius:6px}
+h2{color:#1B2631}
+</style>
+</head>
+<body>
+
+<h1>Simple Adonis + Playwright Example</h1>
+
+<h2>1. Start the server</h2>
+
+<pre>
+cd payments-suite
+node ace serve --watch
+</pre>
+
+Open browser:
+
+<pre>
+http://127.0.0.1:3333
+</pre>
+
+<h2>2. Example Endpoint</h2>
+
+Endpoint URL:
+
+<pre>
+POST /payments/calcular
+</pre>
+
+Example request:
+
+<pre>
+curl -X POST http://127.0.0.1:3333/payments/calcular \
+-H "Content-Type: application/json" \
+-d '{"salary":1000000,"disability":20}'
+</pre>
+
+<h2>3. Install Playwright</h2>
+
+<pre>
+npm install -D @playwright/test
+npx playwright install
+</pre>
+
+<h2>4. Run tests</h2>
+
+<pre>
+npx playwright test
+</pre>
+
+<h2>5. View report</h2>
+
+<pre>
+npx playwright show-report
+</pre>
+
+<p>This minimal project contains:</p>
+
+<ul>
+<li>Example endpoint controller</li>
+<li>Route configuration</li>
+<li>Playwright API test</li>
+</ul>
+
+</body>
+</html>
